@@ -5,7 +5,9 @@ use CodeIgniter\Router\RouteCollection;
 /** @var RouteCollection $routes */
 $routes->get('/', 'Home::index');
 
-
-$routes->get('eperpus', 'Buku::index');
-$routes->get('eperpus/tambah', 'Buku::create');
-$routes->post('eperpus/simpan', 'Buku::store');
+$routes->get('buku', 'Buku::index');
+$routes->get('buku/tambah', 'Buku::create');
+$routes->post('buku/simpan', 'Buku::store');
+$routes->get('buku/edit/(:num)', 'Buku::edit/$1');
+$routes->post('buku/update/(:num)', 'Buku::update/$1');
+$routes->post('buku/delete/(:num)', 'Buku::delete/$1');

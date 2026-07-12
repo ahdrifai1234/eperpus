@@ -11,28 +11,62 @@ class Buku extends BaseController {
 
     public function index() {
         $data['buku'] = $this->buku->findAll();
-        return view('eperpus/index', $data);
+        // return view('buku_index');
+        // return 'okay';
+        return view('buku/index', $data);
+        // var_dump($data); die;
     }
 
     public function create() {
-        helper(['form']);
-        return view('eperpus/create');
+        return view('buku/create');
     }
 
     public function store() {
-        helper(['form']);
-        $rules = [
+        if (!$this->validate([
             'isbn'   => 'required',
             'judul'  => 'required',
+            'penulis'=> 'required',
             'tahun'  => 'required|numeric|exact_length[4]',
             'stok'   => 'required|numeric'
-        ];
-
-        if (!$this->validate($rules)) {
+        ])) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        $this->buku->save($this->request->getPost());
-        return redirect()->to('/eperpus')->with('success', 'Buku berhasil ditambahkan!');
+        $save = $this->buku->save($this->request->getPost());
+        if (!$save) {
+            return redirect()->back()->withInput()->with('errors', $this->buku->errors());
+        }
+        return redirect()->to('/buku')->with('pesan', 'Data berhasil disimpan!');
+    }
+
+    public function edit($id) {
+        $data['buku'] = $this->buku->find($id);
+        return view('buku/edit', $data);
+    }
+
+    public function update($id) {
+        if (!$this->validate([
+            'isbn'   => 'required',
+            'judul'  => 'required',
+            'penulis'=> 'required',
+            'tahun'  => 'required|numeric|exact_length[4]',
+            'stok'   => 'required|numeric'
+        ])) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $upt = $this->buku->update($id, $this->request->getPost());
+        if (!$upt) {
+            return redirect()->to('/buku')->with('pesan', 'Data gagal diupdate!');
+        }
+        return redirect()->to('/buku')->with('pesan', 'Data berhasil diupdate!');
+    }
+
+    public function delete($id) {
+        $del = $this->buku->delete($id);
+        if (!$del) {
+            return redirect()->to('/buku')->with('pesan', 'Data gagal dihapus!');
+        }
+        return redirect()->to('/buku')->with('pesan', 'Data berhasil dihapus!');
     }
 }
