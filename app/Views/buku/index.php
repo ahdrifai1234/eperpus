@@ -22,7 +22,9 @@
             <tbody>
                 <?php foreach($buku as $b): ?>
                 <tr>
-                    <td><?= $b['isbn'] ?></td>
+                    <td>
+                        <?= substr($b['isbn'], 0, 3) . '-' . substr($b['isbn'], 3, 3) . '-' . substr($b['isbn'], 6) ?>
+                    </td>
                     <td><?= $b['judul'] ?></td>
                     <td><?= $b['penulis'] ?></td>
                     <td>

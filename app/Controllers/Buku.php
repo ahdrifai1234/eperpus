@@ -23,7 +23,7 @@ class Buku extends BaseController {
 
     public function store() {
         if (!$this->validate([
-            'isbn'   => 'required',
+            'isbn'   => 'required|regex_match[/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/]|is_unique[buku.isbn]',
             'judul'  => 'required',
             'penulis'=> 'required',
             'tahun'  => 'required|numeric|exact_length[4]',
@@ -46,7 +46,7 @@ class Buku extends BaseController {
 
     public function update($id) {
         if (!$this->validate([
-            'isbn'   => 'required',
+            'isbn'   => 'required|regex_match[/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/]',
             'judul'  => 'required',
             'penulis'=> 'required',
             'tahun'  => 'required|numeric|exact_length[4]',

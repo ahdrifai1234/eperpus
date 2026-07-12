@@ -11,7 +11,7 @@
                     <div class="mb-3">
                         <label class="form-label">ISBN</label>
                         <input type="text" name="isbn" class="form-control <?= session('errors.isbn') ? 'is-invalid' : '' ?>" value="<?= old('isbn') ?>" placeholder="Contoh: 978-602-...">
-                        <div class="form-text">ISBN adalah kode unik untuk setiap buku.</div>
+                        <div class="form-text">ISBN adalah kode unik untuk setiap buku. (13 huruf)</div>
                         <div class="invalid-feedback">
                             <?= session('errors.isbn') ?>
                         </div>
