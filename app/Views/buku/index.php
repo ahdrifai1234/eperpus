@@ -1,6 +1,9 @@
 <?= $this->extend('layout/main') ?>
 <?= $this->section('content') ?>
 
+<!-- Keterangan Page -->
+ <h2 class="mb-4">Data Buku Perpustakaan</h2>
+
 <div class="card shadow-sm">
     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
         <h5 class="mb-0">Daftar Buku</h5>
