@@ -13,6 +13,7 @@
         <table class="table table-hover">
             <thead class="table-light">
                 <tr>
+                    <th>No</th>
                     <th>ISBN</th>
                     <th>Judul</th>
                     <th>Penulis</th>
@@ -20,8 +21,12 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($buku as $b): ?>
+                <?php 
+                    $no = 1;
+                    foreach($buku as $b): 
+                ?>
                 <tr>
+                    <td><?= $no++ ?></td>
                     <td>
                         <?= substr($b['isbn'], 0, 3) . '-' . substr($b['isbn'], 3, 3) . '-' . substr($b['isbn'], 6) ?>
                     </td>
