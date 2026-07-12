@@ -1,6 +1,18 @@
 <?= $this->extend('layout/main') ?>
 <?= $this->section('content') ?>
 
+<!-- Notifikasi (berhasil simpan, hapus) -->
+<?php if(session()->getFlashdata('pesan')): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <?= session()->getFlashdata('pesan') ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php endif; ?>
+
+<table class="table ...">
+   ...
+</table>
+
 <!-- Keterangan Page -->
  <h2 class="mb-4">Data Buku Perpustakaan</h2>
 
